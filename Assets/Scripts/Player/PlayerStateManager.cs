@@ -16,10 +16,15 @@ public class PlayerStateManager : MonoBehaviour
 {
 
     // Player Body Scripts
+<<<<<<< HEAD
     [SerializeField] PlayerMovement playerMovement;
 
 
 
+=======
+    public PlayerMovement playerMovement;
+    public ThrowHead throwHead;
+>>>>>>> origin/main
 
     PlayerState playerState = PlayerState.Body;
     // Start is called before the first frame update
@@ -36,18 +41,39 @@ public class PlayerStateManager : MonoBehaviour
 
     public void ChangePlayerState(PlayerState newState)
     {
+        Debug.Log("Changing player state to " + newState);
         playerState = newState;
         switch (playerState)
         {
             case PlayerState.Body:
-                playerMovement.enabled = true;
+                switchToBody();
                 break;
             case PlayerState.Head:
-                playerMovement.enabled = false;
+                switchToHead();
                 break;
             case PlayerState.Death:
-                playerMovement.enabled = false;
+                switchToDeath();
                 break;
         }
+    }
+
+    void switchToBody()
+    {
+        playerMovement.canMove = true;
+        throwHead.enabled = true;
+        GetComponent<ThrowHead>().SetHeadFalse();
+    }
+
+    void switchToHead()
+    {
+        Debug.Log("Switching to head");
+        playerMovement.canMove = false;
+        throwHead.enabled = false;
+    }
+
+    void switchToDeath()
+    {
+        playerMovement.enabled = false;
+        throwHead.enabled = false;
     }
 }
