@@ -49,7 +49,7 @@ public class EnemyStateManager : MonoBehaviour
 
     public bool PlayerInAttackRange()
     {
-        return enemyMovement.PlayerInAttackRange();
+        return Vector3.Distance(transform.position, playerHealth.transform.position) <= GetComponent<AttackState>().attackRange;
     }
     public bool PlayerInVision()
     {

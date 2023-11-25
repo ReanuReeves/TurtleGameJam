@@ -18,10 +18,16 @@ public class PlayerStateManager : MonoBehaviour
     // Player Body Scripts
     public PlayerMovement playerMovement;
 
-
+    ThrowHead throwHead;
 
 
     PlayerState playerState = PlayerState.Body;
+
+    private void Awake()
+    {
+        throwHead = GetComponent<ThrowHead>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
