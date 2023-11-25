@@ -6,6 +6,8 @@ public class EnemyMovement : MonoBehaviour
     PlayerMovement playerMovement;
     NavMeshAgent agent;
 
+    public Vector3 lastKnownPlayerPosition;
+
     void Awake()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -20,6 +22,16 @@ public class EnemyMovement : MonoBehaviour
     public void MoveTowardsPlayer()
     {
         agent.SetDestination(playerMovement.transform.position);
+    }
+
+    public void BufferPlayerPosition()
+    {
+        lastKnownPlayerPosition = playerMovement.transform.position;
+    }
+
+    public void MoveTowardsLastKnownPlayerPosition()
+    {
+        agent.SetDestination(lastKnownPlayerPosition);
     }
 
     public void StopMoving()
