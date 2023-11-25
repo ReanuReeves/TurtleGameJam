@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AttackState : State
 {
+    public float attackRange = 1.5f;
     [SerializeField] float attackCooldown = 1f;
     float attackTimer = 0f;
     public override void Enter()
@@ -19,7 +20,7 @@ public class AttackState : State
             attackTimer = 0f;
         }
 
-        if (!enemyStateManager.PlayerInAttackRange())
+        if (!PlayerInAttackRange())
         {
             attackTimer = 0f;
             enemyStateManager.ChangeEnemyState(GetComponent<ChaseState>());
@@ -29,6 +30,11 @@ public class AttackState : State
     public override void Exit()
     {
         
+    }
+
+    bool PlayerInAttackRange()
+    {
+        return enemyStateManager.PlayerInAttackRange();
     }
 
     void Attack()
