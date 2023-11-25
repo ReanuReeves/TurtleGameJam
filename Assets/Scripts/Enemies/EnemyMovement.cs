@@ -38,9 +38,4 @@ public class EnemyMovement : MonoBehaviour
     {
         agent.SetDestination(transform.position);
     }
-
-    public bool PlayerInAttackRange()
-    {
-        return Vector3.Distance(transform.position, playerMovement.transform.position) <= 1.5f;
-    }
 }
