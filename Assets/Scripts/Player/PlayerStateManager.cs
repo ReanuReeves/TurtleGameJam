@@ -16,15 +16,10 @@ public class PlayerStateManager : MonoBehaviour
 {
 
     // Player Body Scripts
-<<<<<<< HEAD
-    [SerializeField] PlayerMovement playerMovement;
-
-
-
-=======
     public PlayerMovement playerMovement;
-    public ThrowHead throwHead;
->>>>>>> origin/main
+
+
+
 
     PlayerState playerState = PlayerState.Body;
     // Start is called before the first frame update

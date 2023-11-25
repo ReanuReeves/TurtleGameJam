@@ -6,6 +6,9 @@ public class HeadBehaviour : MonoBehaviour
 {
     PlayerStateManager playerStateManager;
 
+    Camera headCamera;
+    Camera mainCamera;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -14,6 +17,10 @@ public class HeadBehaviour : MonoBehaviour
         // find the player state manager
         playerStateManager = GameObject.Find("Player").GetComponent<PlayerStateManager>();
         playerStateManager.ChangePlayerState(PlayerState.Head);
+        // set the main camera
+        mainCamera = Camera.main;
+        // disable the audio listener on the main camera
+        mainCamera.GetComponent<AudioListener>().enabled = false;
 
     }
 
@@ -24,6 +31,14 @@ public class HeadBehaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             playerStateManager.ChangePlayerState(PlayerState.Body);
+            // set the camera to not view through the head camera
+            headCamera = GetComponentInChildren<Camera>();
+            // view through the head camera
+            headCamera.enabled = false;
+            // switch to the main camera
+            mainCamera.enabled = true;
+            // enable the audio listener on the main camera
+            mainCamera.GetComponent<AudioListener>().enabled = true;
             // destroy the head
             Destroy(gameObject);
         }
@@ -39,6 +54,14 @@ public class HeadBehaviour : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = true;
             // set the head to not be a trigger
             GetComponent<Collider>().isTrigger = false;
+
+            // set the camera to view through the headCamera which is a child of the head
+            headCamera = GetComponentInChildren<Camera>();
+            // view through the head camera
+            headCamera.enabled = true;
+            // disable the main camera
+            Camera.main.enabled = false;
+            
         }
     }
 
