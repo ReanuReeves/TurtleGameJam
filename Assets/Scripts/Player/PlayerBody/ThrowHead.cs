@@ -36,6 +36,8 @@ public class ThrowHead : MonoBehaviour
             isHeadAlive = true;
             // instantiate the head
             GameObject newHead = Instantiate(headPrefab, headSpawnPoint.position, transform.rotation);
+            // set the rotation of the head to 0 0 0
+            newHead.transform.rotation = Quaternion.Euler(0, 0, 0);
             // add force to the head
             newHead.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * chargeTime * 1000);
             // reset the charge time
