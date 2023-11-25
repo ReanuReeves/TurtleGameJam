@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour
 
     bool jumpBuffered = false;
     public int maxWallJumps = 1;
-    int currentWallJumps = 0;
     bool stuckToWall = false;
     Coroutine jumpingCoroutine;
     
@@ -88,10 +87,6 @@ public class PlayerMovement : MonoBehaviour
 
             // Apply damping to force
             moveDirection *= knockbackDamping;
-        }
-
-        if(characterController.isGrounded){
-            currentWallJumps = 0;
         }
         
 
