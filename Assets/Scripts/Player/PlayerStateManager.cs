@@ -10,18 +10,18 @@ public enum PlayerState
     Death
 }
 
-
+// Hallo hallo test test
 
 public class PlayerStateManager : MonoBehaviour
 {
 
     // Player Body Scripts
-    public PlayerMovement playerMovement;
+    [SerializeField] PlayerMovement playerMovement;
 
 
 
 
-    public PlayerState playerState = PlayerState.Body;
+    PlayerState playerState = PlayerState.Body;
     // Start is called before the first frame update
     void Start()
     {
